@@ -2,10 +2,9 @@ import os
 
 from link.solve.main import (
     run_pcst,
-    run_pmed,
     run_pamp,
     run_nfmp
- )
+)
 
 SIMPLE_INPUT = {"type": "FeatureCollection", "features": [
     {"type": "Feature",
@@ -53,6 +52,7 @@ SIMPLE_INPUT = {"type": "FeatureCollection", "features": [
 }]}
 
 if os.environ.get("TBART", False):
+    from link.solve.main import run_pmed
     def test_pmed():
         assert run_pmed(SIMPLE_INPUT)
 

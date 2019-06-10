@@ -1,3 +1,5 @@
+import os
+
 from werkzeug.debug.tbtools import get_current_traceback
 
 from flask import request, render_template, jsonify
@@ -5,7 +7,6 @@ from flask import request, render_template, jsonify
 from link import app
 from link.solve.main import (
     run_pcst,
-    run_pmed,
     run_pamp,
     run_nfmp,
     run_spamp
@@ -28,16 +29,19 @@ def pcst():
         abort(500)
 
 
-@app.route('/v1/pmed/submit', methods=['POST'])
-def pmed():
-    try:
-        content = request.get_json()
-        return jsonify(run_pmed(content))
-    except Exception as e:
-        track = get_current_traceback(skip=1, show_hidden_frames=True,
+if os.environ.get("TBART", False):
+    from link.solve.main import run_pmed
+
+    @app.route('/v1/pmed/submit', methods=['POST'])
+    def pmed():
+        try:
+            content = request.get_json()
+            return jsonify(run_pmed(content))
+        except Exception as e:
+            track = get_current_traceback(skip=1, show_hidden_frames=True,
                     ignore_system_exceptions=False)
-        track.log()
-        abort(500)
+            track.log()
+            abort(500)
 
 
 @app.route('/v1/pamp/submit', methods=['POST'])

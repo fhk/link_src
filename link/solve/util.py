@@ -158,7 +158,6 @@ def make_assi_graph(in_graph):
                 this_path = [(complete[i], complete[i + 1]) for i in range(len(complete) - 1)]
                 length = sum(
                         [p_graph.get_edge_data(pn_hop[0], pn_hop[1])[0]['cost'] for pn_hop in this_path])
-                import pdb; pdb.set_trace()
                 id_map = None
             if length <= in_graph.node[c]['candidate']:
                 if os.environ.get("GT", False):
