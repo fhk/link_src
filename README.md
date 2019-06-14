@@ -9,7 +9,7 @@ There are many infrastructure and logistics design problems that can be modelled
 
 Whilst it is possible to model most of these purely as Mixed Integer Programs (MIP's) this does not scale well. Therefore, by using some Huersitics and algos the functionality seeks to yield equivalent results in a much more rapid timeframe.
 
-This can be used to solve such problems as telecommunication networks which consist of fiber and/or wireless connections.
+This can be used to solve such problems as infrastructure networks which consist of power, logistics, fixed and/or wireless communications connections.
 
 # Functionality
 
@@ -23,7 +23,7 @@ This can be used to solve such problems as telecommunication networks which cons
 - [ ] Make solutions retrievable
 - [X] Add HTTPS
 - [ ] Add tiers with in a solution
-- [ ] Add Metis graph paritioning
+- [ ] Add graph paritioning
 - [ ] Add trans-shipment formulation and data processing
 - [ ] Add multiple solvers XPRESS, Gurobi ...
 - [ ] Add CP implemenations and solvers
@@ -74,6 +74,99 @@ Graph partitioning - find the best place to divide a graph such that it can be t
 Goto [here](https://github.com/fhk/link_src/blob/master/INSTALL.md).
 
 ## HOWTO
+
+Running the functionality as a module
+
+```
+from link.solve.main import run_pcst
+
+input = {"type": "FeatureCollection", "features": [
+    {"type": "Feature", "geometry":
+        {"type": "LineString", "coordinates":
+            [[-122.038761, 36.959798], [-122.03883969999995, 36.9598438]]},
+        "properties": {"length": 9.158584651879671}}
+    {"type": "Feature", "geometry":
+        {"type": "Point", "coordinates":
+             [-122.03883969999995, 36.9598438]},
+        "properties": {
+            "capacity": 1000,
+            "candidate": 500}}
+    {"type": "Feature", "geometry":
+        {"type": "Point", "coordinates":
+            [-122.03883969999995, 36.9598438]},
+        "properties": {
+            "capacity": 0,
+            "candidate": 0,
+            "demand": 1}}
+]}
+
+result = run_pcst(input)
+```
+
+Running the functionality as an API
+
+### Python
+
+```
+import requests
+
+input = {"type": "FeatureCollection", "features": [
+    {"type": "Feature", "geometry":
+        {"type": "LineString", "coordinates":
+            [[-122.038761, 36.959798], [-122.03883969999995, 36.9598438]]},
+        "properties": {"length": 9.158584651879671}}
+    {"type": "Feature", "geometry":
+        {"type": "Point", "coordinates":
+             [-122.03883969999995, 36.9598438]},
+        "properties": {
+            "capacity": 1000,
+            "candidate": 500}}
+    {"type": "Feature", "geometry":
+        {"type": "Point", "coordinates":
+            [-122.03883969999995, 36.9598438]},
+        "properties": {
+            "capacity": 0,
+            "candidate": 0,
+            "demand": 1}}
+]}
+
+url = "0.0.0.0/v1/pcst/submit"
+result = request.post(url, json=input)
+```
+
+### JS
+
+```
+var input = {"type": "FeatureCollection", "features": [
+    {"type": "Feature", "geometry":
+        {"type": "LineString", "coordinates":
+            [[-122.038761, 36.959798], [-122.03883969999995, 36.9598438]]},
+        "properties": {"length": 9.158584651879671}}
+    {"type": "Feature", "geometry":
+        {"type": "Point", "coordinates":
+             [-122.03883969999995, 36.9598438]},
+        "properties": {
+            "capacity": 1000,
+            "candidate": 500}}
+    {"type": "Feature", "geometry":
+        {"type": "Point", "coordinates":
+            [-122.03883969999995, 36.9598438]},
+        "properties": {
+            "capacity": 0,
+            "candidate": 0,
+            "demand": 1}}
+]};
+
+var res = $.ajax({
+    'url': '/v1/pcst/submit',
+    'type': 'POST',
+    'data': JSON.stringify(input),
+    'contentType': 'application/json',
+    'async': False
+});
+
+```
+
 ### TODO
 There is an example jupyter notebook which shows you an end to end example [here](https://github.com/fhk/link_src/blob/master/notebooks/demo.ipynb). 
 
@@ -95,8 +188,6 @@ The REST API works as follows.
     "your_url/v1/pcst/submit"
 3. The solution should be returned
 
-
-
 # Reference this and the link framework research
 
 DOI 10.17605/OSF.IO/3PZJ8
@@ -112,7 +203,13 @@ Therefore, It is optional to install the following libraries:
 1. [graph-tool](https://graph-tool.skewed.de/) - this yields a siginificant improvement in the speed at which you can interact with large graphs.
 2. [t-bart](https://cran.r-project.org/web/packages/tbart/index.html) R module - this is an implementation of Tietz-Bart in R which is an alternative to the pmed implementation of a assignment/p-median modelling approach.
 
+# Shout out
+
+Thanks to fraenkel-lab and their [pcst_fast](https://github.com/fraenkel-lab/pcst_fast) module.
+
 # License
+
+!!!Pending!!! Still working out the GPL challenges as this functionality is new and also includes commerical closed source functionality.
 
 This software is shared under MIT see license file [here](https://github.com/fhk/link_src/blob/master/LICENSE.md).
 
