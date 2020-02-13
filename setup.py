@@ -16,7 +16,7 @@ setup(
     "docplex==2.9.141",
     "decorator==4.3.0",
     "Fiona==1.8.6",
-    "Flask==0.10.1",
+    "Flask==1.0",
     "Flask-Admin==1.3.0",
     "Flask-Bcrypt==0.7.1",
     "Flask-DebugToolbar==0.10.0",
