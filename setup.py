@@ -42,7 +42,7 @@ setup(
     "pycparser==2.18",
     "pytest==3.7.0",
     "pytz==2016.10",
-    "requests==2.19.1",
+    "requests==2.20.0",
     "rpy2==2.8.6",
     "Rtree==0.8.3",
     "scipy==1.1.0",
