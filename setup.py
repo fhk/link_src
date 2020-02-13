@@ -51,7 +51,7 @@ setup(
     "SQLAlchemy==1.2.10",
     "structlog==16.1.0",
     "termcolor==1.1.0",
-    "Werkzeug==0.14.1",
+    "Werkzeug==0.15.3",
     "WTForms==2.1"
     ]
 )
