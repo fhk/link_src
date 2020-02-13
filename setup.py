@@ -27,7 +27,7 @@ setup(
     "Flask-WTF==0.12",
     "GDAL==2.2.4",
     "geopandas==0.4.0",
-    "gunicorn==19.4.5",
+    "gunicorn==19.5.0",
     "itsdangerous==0.24",
     "Jinja2==2.10",
     "MarkupSafe==1.0",
