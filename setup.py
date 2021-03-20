@@ -29,7 +29,7 @@ setup(
     "geopandas==0.4.0",
     "gunicorn==19.4.5",
     "itsdangerous==0.24",
-    "Jinja2==2.10",
+    "Jinja2==2.11.3",
     "MarkupSafe==1.0",
     "networkx==2.1",
     "numpy==1.16.1",
