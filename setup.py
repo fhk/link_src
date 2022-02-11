@@ -36,7 +36,7 @@ setup(
     "osmnx==0.8.1",
     "pandas==0.23.4",
     "pcst-fast==1.0.7",
-    "protobuf==3.3.0",
+    "protobuf==3.15.0",
     "py3-ortools==5.1.4041",
     "pybind11==2.2.3",
     "pycparser==2.18",
