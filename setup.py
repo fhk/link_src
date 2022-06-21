@@ -32,7 +32,7 @@ setup(
     "Jinja2==2.10",
     "MarkupSafe==1.0",
     "networkx==2.1",
-    "numpy==1.16.1",
+    "numpy==1.22.0",
     "osmnx==0.8.1",
     "pandas==0.23.4",
     "pcst-fast==1.0.7",
